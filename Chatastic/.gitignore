@@ -3,6 +3,8 @@
 /public/storage
 /public/js/app.js
 /public/css/app.css
+/public/mix-manifest.json
+/public/fonts/vendor/bootstrap-sass/bootstrap/glyphicons-halflings-regular.svg
 /storage/*.key
 /vendor
 /.idea
