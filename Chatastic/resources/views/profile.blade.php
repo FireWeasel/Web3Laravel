@@ -14,13 +14,14 @@
                         </div>
                     @endif
                     <div class="col-md-3" >
-                      <img src="/img/profile-image.png" width="100px" height="100px" style="border-radius: 50%;">
-                    </div>
-                    <div class="col-md-4">
-                      <p>Name: <label for="name">{{Auth::user()->name}}</label></p>
-                      <p>Email: <label for="email">{{Auth::user()->email}}</label></p>
-                    </div>
-
+                      <img src="/public/img/{{Auth::user()->avatar}}" width="100px" height="100px" style="border-radius: 50%;">
+                        <a href="#">Change Image</a>
+                    </div> <br>
+                       <div class="col-md-4">
+                        <p>Name: <label for="name">{{Auth::user()->name}}</label></p>
+                        <p>Email: <label for="email">{{Auth::user()->email}}</label></p>
+                           <p>Gender: <label for="gender">{{Auth::user()->gender}}</label></p>
+                       </div>
                 </div>
             </div>
         </div>
