@@ -38,7 +38,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @if (Auth::check())
-                      <li><a href="{{ route('profile')}}">Profile</a></li>
+                            <li><a href="{{ route('profile')}}">Profile</a></li>
                             @endif
                     </ul>
 
