@@ -32,6 +32,7 @@
                                <select name="gender" class="col-md-4 control-label">
                                    <option value="male">Male</option>
                                    <option value="female">Female</option>
+                                   <option value="unicorn">Undefined</option>
                                </select>
 
                                 @if ($errors->has('name'))
