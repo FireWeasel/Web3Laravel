@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -23,6 +24,25 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile');
+        return view('profile/view');
+    }
+
+
+    public function edit()
+    {
+        return view('profile/edit');
+    }
+
+    public function update($id, Request $request){
+        $user = User::find($id);
+
+        $this -> validate($request, [
+            'name' => 'required'
+            ]);
+
+        $input = $request->input('name');
+        $user->name = $input;
+        $user->save();
+        return redirect('/profile/view');
     }
 }

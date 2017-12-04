@@ -19,7 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+
+Route::patch('/profile/edit/{id}', 'ProfileController@update')->name('profile.update');
+
+Route::get('/profile/view', 'ProfileController@index')->name('profile');
 
 Route::get('/chat', function() {
   return view('chat');

@@ -15,13 +15,12 @@
                     @endif
                     <div class="col-md-3" >
                       <img src="/public/img/{{Auth::user()->avatar}}" width="100px" height="100px" style="border-radius: 50%;">
-                        <button class="btn btn-default">Change Image</button>
                     </div> <br>
                        <div class="col-md-4">
                         <p>Name: <label for="name">{{Auth::user()->name}}</label></p>
                         <p>Email: <label for="email">{{Auth::user()->email}}</label></p>
                            <p>Gender: <label for="gender">{{Auth::user()->gender}}</label></p>
-                           <p><button class="btn btn-default">Change information</button></p>
+                           <a href="{{route('profile.edit')}}"><button class="btn btn-default">Change information</button></a>
                        </div>
                 </div>
             </div>
