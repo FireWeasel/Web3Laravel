@@ -23,6 +23,10 @@ Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 
 Route::patch('/profile/edit/{id}', 'ProfileController@update')->name('profile.update');
 
+//Route::patch('/profile/edit/{id}', 'ProfileController@updatePicture')->name('profile.updatePicture');
+
+Route::delete('/profile/edit/{id}', 'ProfileController@delete')->name('profile.delete');
+
 Route::get('/profile/view', 'ProfileController@index')->name('profile');
 
 Route::get('/chat', function() {

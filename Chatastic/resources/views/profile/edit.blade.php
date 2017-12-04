@@ -22,7 +22,7 @@
                                 'route' => ['profile.update', Auth::user()->id]
 ])                           !!}
                                 <label for="name">Name:</label><input type="text" class="form-control" name="name" id="changedName" value="{{Auth::user()->name}}"><br>
-                                <label for="email">Age:</label><input type="text" class="form-control" name="age" id="changedName" value=""><br>
+                                <label for="age">Age:</label><input type="text" class="form-control" name="age" id="changedAge" value="{{Auth::user()->age}}"><br>
                                 <label for="gender">Gender:</label>
                                 <select name="gender" class="">
                                     <option value="male">Male</option>
