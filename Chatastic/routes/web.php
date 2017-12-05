@@ -19,9 +19,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+
+Route::patch('/profile/edit/{id}', 'ProfileController@update')->name('profile.update');
+
+Route::delete('/profile/edit/{id}', 'ProfileController@delete')->name('profile.delete');
+
+Route::get('/profile/view', 'ProfileController@index')->name('profile');
+
 Route::get('/chat', function() {
   return view('chat');
-})->middleware('auth');
+})->middleware('auth')->name('chat');
 
 Route::get('/messages', function() {
   return App\Message::with('user')->get();
@@ -34,3 +42,4 @@ Route::post('/messages', function() {
   ]);
   return ['status' => 'OK'];
 })->middleware('auth');
+

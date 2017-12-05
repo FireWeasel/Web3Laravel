@@ -13,8 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    @if(Auth::check())
+                    Greetings {{Auth::user()-> name}}, have a nice day! Fact of the day: your gender is {{Auth::user()->gender}}. <br>
+                        @else
+                    Welcome to Chatastic, an application for chatting!
+                        @endif
                 </div>
             </div>
         </div>

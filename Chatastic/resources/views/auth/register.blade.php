@@ -25,6 +25,24 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Gender</label>
+
+                            <div class="col-md-6">
+                               <select name="gender" class="col-md-4 control-label">
+                                   <option value="male">Male</option>
+                                   <option value="female">Female</option>
+                                   <option value="unicorn">Undefined</option>
+                               </select>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 

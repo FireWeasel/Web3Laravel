@@ -31,12 +31,15 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                       Chatastic
                     </a>
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @if (Auth::check())
+                            <li><a href="{{ route('chat')}}">Chat</a></li>
+                            @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -47,17 +50,27 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <img src="/Web3Laravel/Chatastic/public/img/{{Auth::user()->avatar}}" width="20px" height="20px" style="border-radius: 50%;">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+
+                                    @if (Auth::check())
+                                        <a href="{{ route('profile')}}">Profile</a>
+                                    @endif
+
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
+
+
+
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
