@@ -36,11 +36,11 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <!--<ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
                         @if (Auth::check())
-                            <li><a href="{{ route('profile')}}">Profile</a></li>
+                            <li><a href="{{ route('chat')}}">Chat</a></li>
                             @endif
-                    </ul>-->
+                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
