@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 
 class ProfileController extends Controller
 {
@@ -34,25 +36,44 @@ class ProfileController extends Controller
         return view('profile/edit');
     }
 
-    public function update($id, Request $request){
-        $user = User::find($id);
+    public function update($id){
+        //$user = User::find($id);
 
-        $this -> validate($request, [
-            'name' => 'required',
-            'gender' => 'required',
-            'age' => 'required'
-            ]);
+        $rules = array(
+            'name'       => 'required',
+            'gender'      => 'required',
+            'age' => 'required|numeric',
+        );
 
-        $input = $request->all();
-        $user->fill($input)->save();
-        return redirect('/profile/view');
+        $validator = Validator::make(Input::all(), $rules);
+        $getimageName = time().'.'.Input::file('image')->extension();
+        Input::file('image')->move(base_path().'/public/img', $getimageName);
+
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withErrors($validator);
+        } else {
+            // store
+            $user = User::find($id);
+            $user->name = Input::get('name');
+            $user->gender = Input::get('gender');
+            $user->age = Input::get('age');
+            $user->avatar = $getimageName;
+            $user->save();
+
+            // redirect
+            //Session::flash('message', 'Successfully updated profile!');
+            return redirect('/profile/view');
+        }
+
+        //return redirect('/profile/view');
     }
 
     public function updatePicture($id, Request $request)
     {
         $user = User::find($id);
         $this->validate($request, [
-            'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+
         ]);
 
         $getimageName = time().'.'.$request->avatar->getClientOriginalExtension();

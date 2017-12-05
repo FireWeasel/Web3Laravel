@@ -52,7 +52,7 @@
                             <li class="dropdown">
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <img src="/Web3Laravel/Chatastic/public/img/{{Auth::user()->avatar}}" width="20px" height="20px" style="border-radius: 50%;">
+                                    <img src="/public/img/{{Auth::user()->avatar}}" width="20px" height="20px" style="border-radius: 50%;">
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

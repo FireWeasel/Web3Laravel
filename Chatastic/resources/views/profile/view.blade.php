@@ -15,8 +15,8 @@
                     @endif
                     <div class="col-md-3" >
                       {{--<div class="pull-left">--}}
-                          <img src="/Web3Laravel/Chatastic/public/img/{{Auth::user()->avatar}}" width="100px" height="100px" style="border-radius: 50%; /*vertical-align: middle;*/">
-                          <button class="btn btn-default" data-toggle="modal" data-target="#addImageModal">Change Image</button>
+                          <img src="/public/img/{{Auth::user()->avatar}}" width="100px" height="100px" style="border-radius: 50%; /*vertical-align: middle;*/">
+                          {{--<button class="btn btn-default" data-toggle="modal" data-target="#addImageModal">Change Image</button>--}}
                       {{--</div>--}}
                     </div> <br>
                        <div class="col-md-4">
@@ -48,8 +48,13 @@
                                 <div class="modal-body">
                                     {!! Form::model(Auth::user(), [
                                     'method' => 'PATCH',
-                                    'route' => ['profile.update', Auth::user()->id]
+                                    'route' => ['profile.update', Auth::user()->id],
+                                    'enctype'=> 'multipart/form-data',
+                                    'files' => true
 ])                                      !!}
+                                    <img src="/public/img/{{Auth::user()->avatar}}" width="100px" height="100px" style="border-radius: 50%; /*vertical-align: middle;*/">
+                                    <input type="file" name="image" class="form-control" id="avatar">
+                                    <hr>
                                     Name:
                                     <input type="text" class="form-control" name="name" id="changedName" value="{{Auth::user()->name}}"><br>
                                     Age:
