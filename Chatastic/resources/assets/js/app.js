@@ -28,13 +28,13 @@ const app = new Vue({
     methods: {
       addMessage(message) {
         this.messages.push(message);
-        axios.post('/Web3Laravel/Chatastic/public/messages', message).then(response => {
+        axios.post('/public/messages', message).then(response => {
           
         });
       }
     },
     created() {
-      axios.get('/Web3Laravel/Chatastic/public/messages').then(response => {
+      axios.get('/public/messages').then(response => {
         this.messages = response.data;
       });
     }

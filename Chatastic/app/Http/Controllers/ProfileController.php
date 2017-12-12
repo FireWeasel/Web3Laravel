@@ -46,8 +46,15 @@ class ProfileController extends Controller
         );
 
         $validator = Validator::make(Input::all(), $rules);
-        $getimageName = time().'.'.Input::file('image')->extension();
-        Input::file('image')->move(base_path().'/public/img', $getimageName);
+
+        if(Input::hasFile('image'))
+        {
+            $getimageName = time().'.'.Input::file('image')->extension();
+            Input::file('image')->move(base_path().'/public/img', $getimageName);
+        }else {
+            $user = User::find($id);
+            $getimageName = $user->avatar;
+        }
 
         if ($validator->fails()) {
             return redirect('/')
