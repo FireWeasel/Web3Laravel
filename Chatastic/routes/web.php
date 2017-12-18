@@ -17,11 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/getUser', 'AdministatorController@getDataView');
+Route::put('/getUser', 'AdministatorController@getData');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 
 Route::patch('/profile/edit/{id}', 'ProfileController@update')->name('profile.update');
+
 
 Route::delete('/profile/edit/{id}', 'ProfileController@delete')->name('profile.delete');
 

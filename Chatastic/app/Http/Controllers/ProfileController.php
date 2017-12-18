@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProfileController extends Controller
 {
@@ -51,6 +52,7 @@ class ProfileController extends Controller
         {
             $getimageName = time().'.'.Input::file('image')->extension();
             Input::file('image')->move(base_path().'/public/img', $getimageName);
+
         }else {
             $user = User::find($id);
             $getimageName = $user->avatar;

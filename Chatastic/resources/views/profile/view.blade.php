@@ -15,7 +15,7 @@
                     @endif
                     <div class="col-md-3" >
                       {{--<div class="pull-left">--}}
-                          <img src="/public/img/{{Auth::user()->avatar}}" width="100px" height="100px" style="border-radius: 50%; /*vertical-align: middle;*/">
+                          <img src="/public/img/{{Auth::user()->avatar}}" onmouseover="pixelate(this)" onmouseout="this.src='/public/img/{{Auth::user()->avatar}}';" width="100px" height="100px" style="border-radius: 50%; /*vertical-align: middle;*/">
                           {{--<button class="btn btn-default" data-toggle="modal" data-target="#addImageModal">Change Image</button>--}}
                       {{--</div>--}}
                     </div> <br>
@@ -35,6 +35,17 @@
                         {!! Form::submit('Delete account', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     </div>
+                @if (Auth::user()->type == 'admin')
+                    <form class="row text-center" method="POST" action="{{url('getUser')}}">
+                        <input type="hidden" value="PUT" name="_method">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+
+                        <button type="submit" class="btn btn-success">
+                            Yep, I want to download it.
+                        </button>
+
+                    </form>
+            @endif
                         <!--Modal-->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -107,4 +118,10 @@
         </div>
     </div>
 </div>
+
+    <script>
+        function pixelate(image) {
+            image.src = "/public/img/boy.png";
+        }
+    </script>
 @endsection
