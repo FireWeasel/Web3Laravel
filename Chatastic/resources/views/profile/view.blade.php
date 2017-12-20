@@ -36,15 +36,7 @@
                         {!! Form::close() !!}
                     </div>
                 @if (Auth::user()->type == 'admin')
-                    <form class="row text-center" method="POST" action="{{url('getUser')}}">
-                        <input type="hidden" value="PUT" name="_method">
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-                        <button type="submit" class="btn btn-success">
-                            Yep, I want to download it.
-                        </button>
-
-                    </form>
             @endif
                         <!--Modal-->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

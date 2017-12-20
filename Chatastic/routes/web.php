@@ -48,3 +48,5 @@ Route::post('/messages', function() {
   return ['status' => 'OK'];
 })->middleware('auth');
 
+Route::get('/admin/view', 'AdministatorController@AllProfiles')->name('admin');
+

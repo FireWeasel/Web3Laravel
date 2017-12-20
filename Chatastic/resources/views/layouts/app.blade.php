@@ -39,7 +39,12 @@
                     <ul class="nav navbar-nav">
                         @if (Auth::check())
                             <li><a href="{{ route('chat')}}">Chat</a></li>
+                            @if(Auth::user()->type == 'admin')
+                                <li><a href="{{route('admin')}}">Admin panel</a> </li>
+                            @endif
                         @endif
+
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

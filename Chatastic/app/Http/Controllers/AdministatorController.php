@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\ImageManagerStatic as Image;
 use Excel;
+use PDF;
 
 class AdministatorController extends Controller
 {
@@ -48,6 +49,23 @@ class AdministatorController extends Controller
         })->download('xlsx');
 
         return view('getData');
+    }
+
+
+    public function getPDF($id){
+        return view('getPDFData', compact($id));
+    }
+
+    public function getPDFData($id){
+        $user = UserDetail::find($id);
+        $pdf = PDF::loadView('pdf', compact('user'));
+        return $pdf->download('invoice.pdf');
+    }
+
+    public function AllProfiles(){
+        $allUsers = User::all();
+
+        return view('/admin/view',['users'=>$allUsers]);
     }
 
 }
