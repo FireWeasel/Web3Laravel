@@ -11,6 +11,12 @@
 |
 */
 
+Route::get('/conversations', function() {
+  return view('conversations/conversations');
+})->middleware('auth')->name('conversations');
+
+Route::get('/conversation/{id}', 'ConversationController@show')->name('conversation.show');
+
 Route::get('/', function () {
     return view('home');
 });
@@ -42,4 +48,3 @@ Route::post('/messages', function() {
   ]);
   return ['status' => 'OK'];
 })->middleware('auth');
-

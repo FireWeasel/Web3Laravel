@@ -38,7 +38,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @if (Auth::check())
-                            <li><a href="{{ route('chat')}}">Chat</a></li>
+                            <li><a href="{{ route('conversations')}}">Chat</a></li>
                             @endif
                     </ul>
 
