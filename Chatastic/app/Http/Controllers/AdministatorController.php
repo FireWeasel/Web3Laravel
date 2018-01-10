@@ -68,4 +68,59 @@ class AdministatorController extends Controller
         return view('/admin/view',['users'=>$allUsers]);
     }
 
+    public function ViewProfile($id){
+        return view('/profile/overview/'.$id);
+    }
+
+    public function EditProfile($id){
+        $user = User::find($id);
+        return view ('/profile/edit')-> with('user', $user);
+    }
+
+    public function UpdateProfile($id){
+
+        $rules = array(
+            'name'       => 'required',
+            'gender'      => 'required',
+            'age' => 'required|numeric',
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if(Input::hasFile('image'))
+        {
+            $getimageName = time().'.'.Input::file('image')->extension();
+            Input::file('image')->move(base_path().'/public/img', $getimageName);
+
+        }else {
+            $user = User::find($id);
+            $getimageName = $user->avatar;
+        }
+
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withErrors($validator);
+        } else {
+            // store
+            $user = User::find($id);
+            $user->name = Input::get('name');
+            $user->gender = Input::get('gender');
+            $user->age = Input::get('age');
+            $user->avatar = $getimageName;
+            $user->save();
+
+            // redirect
+            //Session::flash('message', 'Successfully updated profile!');
+            return redirect('/admin/view');
+        }
+    }
+
+    public function DeleteProfile($id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return redirect('/admin/view');
+    }
 }

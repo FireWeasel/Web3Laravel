@@ -27,14 +27,8 @@
                                     </div>
 
                                     <div style= "display:inline-block; float:right;">
-                                        <a href="{{url('/profile/' . $user->id)}}">
-                                            <button class="btn">Visit profile</button>
-                                        </a>
-                                        <a href="{{url('/editProfile/' . $user->id)}}">
-                                            <button class="btn">Edit profile</button>
-                                        </a>
-                                        <a href="{{url('/changeAvatar/' . $user->id)}}">
-                                            <button class="btn">Change avatar</button>
+                                        <a href="{{ route('admin.edit', $user->id)}}">
+                                            <button class="btn" data-toggle="modal" data-target="#myModal">Edit profile</button>
                                         </a>
                                     </div>
                                 </div>
