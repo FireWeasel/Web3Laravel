@@ -15,9 +15,15 @@ Route::get('/conversations', function() {
   return view('conversations/conversations');
 })->middleware('auth')->name('conversations');
 
-Route::get('/conversation/{id}', 'ConversationController@show')->name('conversation.show');
+Route::get('/conversation/{id}', 'ConversationController@show')->middleware('auth')->name('conversation.show');
 
-Route::get('/conversation/{id}/{message}', 'ConversationController@postMessage')->name('conversation.postMessage');
+Route::get('/conversation/{id}/{message}', 'ConversationController@postMessage')->middleware('auth')->name('conversation.postMessage');
+
+Route::get('/conversations/new', function() {
+  return view('conversations/new');
+})->middleware('auth')->name('conversations.new');
+
+Route::post('/conversation/create', 'ConversationController@createConversation')->middleware('auth')->name('conversations.create');
 
 Route::get('/', function () {
     return view('home');

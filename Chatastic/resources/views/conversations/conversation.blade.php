@@ -36,6 +36,7 @@
       </div>
     </div>
 </div>
+@endsection
 
 <script type="text/javascript">
   function sendMessagee() {
@@ -43,4 +44,3 @@
     window.location.href=url;
   }
 </script>
-@endsection
