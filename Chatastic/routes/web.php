@@ -17,6 +17,8 @@ Route::get('/conversations', function() {
 
 Route::get('/conversation/{id}', 'ConversationController@show')->name('conversation.show');
 
+Route::get('/conversation/{id}/{message}', 'ConversationController@postMessage')->name('conversation.postMessage');
+
 Route::get('/', function () {
     return view('home');
 });
