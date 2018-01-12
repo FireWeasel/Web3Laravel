@@ -41,12 +41,12 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        @if (Auth::check())
-                            @if(Auth::user()->type == 'admin')
-                                <li><a href="{{route('admin')}}">Admin panel</a> </li>
-                            @endif
-                        @endif
-
+                      @if (Auth::check())
+                          <li><a href="{{ route('conversations')}}">Chat</a></li>
+                          @if(Auth::user()->type == 'admin')
+                              <li><a href="{{route('admin')}}">Admin panel</a> </li>
+                          @endif
+                      @endif
 
                     </ul>
 
