@@ -13,7 +13,9 @@
 
 Route::get('/conversations', function() {
   return view('conversations/conversations');
-})->middleware('auth')->name('conversations');
+})->middleware('auth');
+
+Route::get('/conversations','ConversationController@showAll') ->name('conversations')->middleware('auth');
 
 Route::get('/conversation/{id}', 'ConversationController@show')->middleware('auth')->name('conversation.show');
 
@@ -65,4 +67,5 @@ Route::post('/messages', function() {
 Route::get('/admin/view', 'AdministatorController@AllProfiles')->name('admin');
 Route::get('/profile/edit/{id}', 'AdministatorController@EditProfile')->name('admin.edit');
 Route::patch('/profile/edit/{id}', 'AdministatorController@UpdateProfile')->name('admin.update');
-Route::delete('/profile/edit/{id}', 'AdministatorController@DeleteProfile')->name('admin.delete');
+Route::delete('/profile/edit/{id}', 'AdministatorController@RemoveUser')->name('admin.delete');
+Route::get('/profile/overview/{id}', 'AdministatorController@ViewProfile')->name('admin.view');

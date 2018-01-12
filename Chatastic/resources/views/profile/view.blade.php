@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">User information</div>
+               <div class="panel-heading">User information</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -74,35 +74,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--Modal-->
-                    <div class="modal fade" id="addImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit picture:</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                   {{-- {!! Form::model(Auth::user(), [--}}
-                                    {{--'method' => 'PATCH',--}}
-                                    {{--'route' => ['', Auth::user()->id]])--}}
-                                          {{--!!}--}}
-                                    <img src="/public/img/{{Auth::user()->avatar}}" width="100px" height="100px" style="border-radius: 50%; /*vertical-align: middle;*/">
-                                    <input type="file" name="image" class="form-control" id="avatar">
-                                    <hr>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                    {!! Form::close() !!}
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    </div>
+                </div>
             </div>
         </div>
     </div>

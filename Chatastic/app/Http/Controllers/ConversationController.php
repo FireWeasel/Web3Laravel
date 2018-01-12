@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ConversationController extends Controller
 {
+    public function showAll(){
+        $users = User::all();
+        return view('conversations/conversations',['users'=>$users]);
+    }
+
     public function show($id) {
         $conversation = Conversation::find($id);
         return view('conversations/conversation', ['conversation' => $conversation]);
