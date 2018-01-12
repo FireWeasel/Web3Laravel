@@ -31,13 +31,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/getUser', 'AdministatorController@getDataView');
+Route::put('/getUser', 'AdministatorController@getData');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
 
-Route::patch('/profile/edit/{id}', 'ProfileController@update')->name('profile.update');
+Route::patch('/profile/{id}', 'ProfileController@update')->name('profile.update');
 
-Route::delete('/profile/edit/{id}', 'ProfileController@delete')->name('profile.delete');
+
+Route::delete('/profile/{id}', 'ProfileController@delete')->name('profile.delete');
 
 Route::get('/profile/view', 'ProfileController@index')->name('profile');
 
@@ -56,3 +61,8 @@ Route::post('/messages', function() {
   ]);
   return ['status' => 'OK'];
 })->middleware('auth');
+
+Route::get('/admin/view', 'AdministatorController@AllProfiles')->name('admin');
+Route::get('/profile/edit/{id}', 'AdministatorController@EditProfile')->name('admin.edit');
+Route::patch('/profile/edit/{id}', 'AdministatorController@UpdateProfile')->name('admin.update');
+Route::delete('/profile/edit/{id}', 'AdministatorController@DeleteProfile')->name('admin.delete');

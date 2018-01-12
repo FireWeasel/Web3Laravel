@@ -15,7 +15,7 @@
                     @endif
                     <div class="col-md-3" >
                       {{--<div class="pull-left">--}}
-                          <img src="/public/img/{{Auth::user()->avatar}}" width="100px" height="100px" style="border-radius: 50%; /*vertical-align: middle;*/">
+                          <img src="/public/img/{{Auth::user()->avatar}}" onmouseover="pixelate(this)" onmouseout="this.src='/public/img/{{Auth::user()->avatar}}';" width="100px" height="100px" style="border-radius: 50%; /*vertical-align: middle;*/">
                           {{--<button class="btn btn-default" data-toggle="modal" data-target="#addImageModal">Change Image</button>--}}
                       {{--</div>--}}
                     </div> <br>
@@ -107,4 +107,10 @@
         </div>
     </div>
 </div>
+
+    <script>
+        function pixelate(image) {
+            image.src = "/public/img/boy.png";
+        }
+    </script>
 @endsection

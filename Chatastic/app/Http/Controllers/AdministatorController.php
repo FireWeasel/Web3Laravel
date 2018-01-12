@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\ImageManagerStatic as Image;
+use Excel;
+use PDF;
 
-class ProfileController extends Controller
+class AdministatorController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,17 +30,54 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile/view');
+        return view('/getUser');
+    }
+
+    public function getDataView(){
+
+        return view('getData');
+    }
+
+    public function getData(){
+        $data = User::get()->toArray();
+        Excel::create('List of Users', function($excel) use ($data){
+            $excel->sheet('Sheet 1', function($sheet) use ($data){
+
+                $sheet->fromArray($data);
+
+            });
+        })->download('xlsx');
+
+        return view('getData');
     }
 
 
-    public function edit()
-    {
-        return view('profile/edit');
+    public function getPDF($id){
+        return view('getPDFData', compact($id));
     }
 
-    public function update($id){
-        //$user = User::find($id);
+    public function getPDFData($id){
+        $user = UserDetail::find($id);
+        $pdf = PDF::loadView('pdf', compact('user'));
+        return $pdf->download('invoice.pdf');
+    }
+
+    public function AllProfiles(){
+        $allUsers = User::all();
+
+        return view('/admin/view',['users'=>$allUsers]);
+    }
+
+    public function ViewProfile($id){
+        return view('/profile/overview/'.$id);
+    }
+
+    public function EditProfile($id){
+        $user = User::find($id);
+        return view ('/profile/edit')-> with('user', $user);
+    }
+
+    public function UpdateProfile($id){
 
         $rules = array(
             'name'       => 'required',
@@ -72,33 +111,16 @@ class ProfileController extends Controller
 
             // redirect
             //Session::flash('message', 'Successfully updated profile!');
-            return redirect('/profile/view');
+            return redirect('/admin/view');
         }
-
-        //return redirect('/profile/view');
     }
 
-    public function updatePicture($id, Request $request)
-    {
-        $user = User::find($id);
-        $this->validate($request, [
-
-        ]);
-
-        $getimageName = time().'.'.$request->avatar->getClientOriginalExtension();
-        $request->avatar->move(public_path('img'), $getimageName);
-        return redirect()->route('profile/view');
-
-    }
-
-    public function delete($id)
+    public function DeleteProfile($id)
     {
         $user = User::findOrFail($id);
 
         $user->delete();
 
-        return redirect()->route('home');
+        return redirect('/admin/view');
     }
-
-
 }
