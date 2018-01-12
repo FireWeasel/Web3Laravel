@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Conversation;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -64,12 +65,14 @@ class AdministatorController extends Controller
 
     public function AllProfiles(){
         $allUsers = User::all();
+        $allConvo = Conversation::all();
 
-        return view('/admin/view',['users'=>$allUsers]);
+        return view('/admin/view',['users'=>$allUsers, 'conversations'=>$allConvo]);
     }
 
     public function ViewProfile($id){
-        return view('/profile/overview/'.$id);
+        $user = User::find($id);
+        return view('/profile/overview')-> with ('user',$user);
     }
 
     public function EditProfile($id){
@@ -122,5 +125,15 @@ class AdministatorController extends Controller
         $user->delete();
 
         return redirect('/admin/view');
+    }
+
+    public function RemoveUser($id){
+
+        //User::destroy($id);
+
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect ('/admin/view');
     }
 }
